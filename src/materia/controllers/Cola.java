@@ -2,7 +2,6 @@ package materia.controllers;
 
 import java.util.EmptyStackException;
 
-import materia.models.Node;
 import materia.models.NodeGeneric;
 import materia.models.Persona;
 
@@ -61,18 +60,12 @@ public class Cola<T> {
         }
     }
 
-    /**
- * Busca una persona por nombre en la cola
- * @param nombre El nombre de la persona a buscar
- * @return La persona encontrada o null si no existe
- */
 public T buscarPersona(String nombre) {
     if (isEmpty()) return null;
     
     NodeGeneric<T> actual = primero;
     while (actual != null) {
         T valor = actual.getValue();
-        // Verificamos si es una instancia de Persona y si el nombre coincide
         if (valor instanceof Persona) {
             Persona persona = (Persona) valor;
             if (persona.getNombre().equalsIgnoreCase(nombre)) {
@@ -81,14 +74,9 @@ public T buscarPersona(String nombre) {
         }
         actual = actual.getNext();
     }
-    return null; // No encontrado
+    return null; 
 }
 
-/**
- * Elimina una persona específica de la cola por nombre
- * @param nombre El nombre de la persona a eliminar
- * @return true si se eliminó, false si no se encontró
- */
 public boolean eliminarPersona(String nombre) {
     if (isEmpty()) return false;
     
